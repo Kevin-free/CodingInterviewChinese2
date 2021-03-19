@@ -20,8 +20,13 @@
 
 ## 解题思路
 
-有序、重复、找第一个。
-所以我们可以使用寻找左侧边界的[二分查找](https://mp.weixin.qq.com/s/-svAlOT4jNezExYAIegjYQ)
+当然我们很容易想到直接扫描查找，但是 O(N) 的时间复杂度，这种方法显然不能让面试官满意。但是面试但时候也可以先提一嘴，为后续的优化做铺垫。
+
+对于查找，我们通常要想到时间复杂度为 O(logN) 的[二分查找](https://mp.weixin.qq.com/s/-svAlOT4jNezExYAIegjYQ)。并且这题满意有序的前提。
+
+但是这题与普通二分查找不同的是重复、找第一个。
+
+所以所以我们可以使用寻找左侧边界的[二分查找](https://mp.weixin.qq.com/s/-svAlOT4jNezExYAIegjYQ)
 
 与二分查找的不同在于，寻找左侧边界的二分查找在找到目标值时并不直接返回，而是将右侧边界收紧以锁定左侧边界。
 
@@ -39,7 +44,9 @@ func searchLeft(nums []int, target int) int {
 	right := len(nums) - 1
 
 	for left <= right {
-		mid := left + (right-left)/2 //防止溢出
+		//mid := (left + right)/2 // 简单写法
+		//mid := left + (right-left)/2 // 防止溢出
+		mid := left + (right-left)>>1 // 位运算，高效写法
 		if nums[mid] == target {
 			right = mid - 1 // diff with binary search
 		} else if nums[mid] < target {
@@ -58,5 +65,6 @@ func searchLeft(nums []int, target int) int {
 }
 ```
 
+![罗翔老师都觉得合适的不得了 :D ](http://wesub.ifree258.top/gifBottom.gif)
 
 ![](http://wesub.ifree258.top/bottomPic.png)
