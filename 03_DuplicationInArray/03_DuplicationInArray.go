@@ -1,4 +1,4 @@
-package _3_01_DuplicationInArray
+package _3_DuplicationInArray
 
 import "sort"
 
