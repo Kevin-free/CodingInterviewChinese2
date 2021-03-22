@@ -41,7 +41,7 @@ F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
 ```go
 
 func fib(n int) int {
-	// 递归 time out
+	// 递归 time limit
 	//if n == 1 || n == 2 {
 	//	return n
 	//}
