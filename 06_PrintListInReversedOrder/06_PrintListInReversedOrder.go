@@ -1,7 +1,5 @@
 package _6_PrintListInReversedOrder
 
-import "sort"
-
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -24,12 +22,14 @@ func reversePrint(head *ListNode) []int {
 		//     res[i] = stack[len(stack)-1-i]
 		// }
 	}
+
+	//sort.Reverse(sort.IntSlice(stack))
+
 	// reverse
-	//for i, j := 0, len(stack)-1; i < j; {
-	//	stack[i], stack[j] = stack[j], stack[i]
-	//	i++
-	//	j--
-	//}
-	sort.Reverse(sort.IntSlice(stack))
+	for i, j := 0, len(stack)-1; i < j; {
+		stack[i], stack[j] = stack[j], stack[i]
+		i++
+		j--
+	}
 	return stack
 }
