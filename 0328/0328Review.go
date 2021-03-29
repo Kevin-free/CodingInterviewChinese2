@@ -1,6 +1,13 @@
 package _328
 
 // 一个单链表，假设第一个节点我们定为下标为1，第二个为2，依次类推，同时假设下标为奇数的结点是升序排序，偶数的结点是降序排序，如何让整个链表升序？
+/**
+ * 单链表奇数递增偶数递减，使之升序
+ * 分三步：
+ * 1.拆分成2个链表
+ * 2.对逆序的链表反转
+ * 3.合并2个链表
+ */
 
 // 16：50
 func sortOddDoubleList2(list *ListNode) *ListNode {
@@ -24,6 +31,7 @@ func sortOddDoubleList2(list *ListNode) *ListNode {
 // end 17:38
 
 // 16：50
+// 按奇偶拆分成两个链表
 func part2List(list *ListNode) (*ListNode, *ListNode) {
 	l1 := list
 	l2 := list.Next
@@ -63,15 +71,16 @@ func part2List(list *ListNode) (*ListNode, *ListNode) {
 // end 17:10
 
 // pause 17:12
+// 反转链表（剑指offer 24）
 func sort2IncList(list *ListNode) *ListNode {
-	var pre *ListNode // use this: nil
 	//pre := &ListNode{} //can not use this: ListNode{0, nil}
+	var pre *ListNode // use this: nil
 	var next *ListNode
 	for list != nil {
 		next = list.Next // 保存next，防止断链
-		list.Next = pre // 反转
-		pre = list
-		list = next
+		list.Next = pre  // 反转
+		pre = list       // pre 后移
+		list = next      // list 后移
 	}
 	return pre
 }
@@ -79,6 +88,7 @@ func sort2IncList(list *ListNode) *ListNode {
 // end 17:22 cost 10min
 
 // 17:23
+// 合并两个排序的链表（剑指offer 25）
 func mergeTowSortedList(list1, list2 *ListNode) *ListNode {
 	//var dummyHead *ListNode // can not! dummyHead is nil
 	dummyHead := &ListNode{}
